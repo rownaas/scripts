@@ -14,25 +14,25 @@ echo
 KEY_NAME="id_rsa_github_${USERNAME}"
 
 # Cria o diretório .ssh se não existir
-mkdir -p ~/.ssh
+mkdir -p "$HOME/.ssh"
 
 # Verifica se a chave SSH já existe
-if [ -f "~/.ssh/$KEY_NAME" ]; then
-    echo "A chave SSH ~/.ssh/$KEY_NAME já existe."
+if [ -f "$HOME/.ssh/$KEY_NAME" ]; then
+    echo "A chave SSH $HOME/.ssh/$KEY_NAME já existe."
     exit 1
 fi
 
 # Gera a chave SSH
-ssh-keygen -t rsa -b 4096 -C "$EMAIL" -f "~/.ssh/$KEY_NAME" -N "$PASSPHRASE"
+ssh-keygen -t rsa -b 4096 -C "$EMAIL" -f "$HOME/.ssh/$KEY_NAME" -N "$PASSPHRASE"
 
 # Inicia o agente SSH
 eval "$(ssh-agent -s)"
 
 # Adiciona a chave SSH ao agente
-ssh-add "~/.ssh/$KEY_NAME"
+ssh-add "$HOME/.ssh/$KEY_NAME"
 
 # Exibe a chave pública
 echo "A chave pública gerada é:"
-cat "~/.ssh/$KEY_NAME.pub"
+cat "$HOME/.ssh/$KEY_NAME.pub"
 
 echo "Copie a chave acima e adicione-a ao seu GitHub, acessando https://github.com/settings/keys"
