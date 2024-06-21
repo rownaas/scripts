@@ -13,6 +13,9 @@ echo
 # Define o nome do arquivo da chave SSH
 KEY_NAME="id_rsa_github_${USERNAME}"
 
+# Cria o diretório .ssh se não existir
+mkdir -p ~/.ssh
+
 # Verifica se a chave SSH já existe
 if [ -f "~/.ssh/$KEY_NAME" ]; then
     echo "A chave SSH ~/.ssh/$KEY_NAME já existe."
